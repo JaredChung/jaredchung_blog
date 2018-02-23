@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+
+{% block header %}
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('{{ url_for('static', filename ='img/home-bg.jpg')}}')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="page-heading">
+              <h1>Blog Posts</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-preview">
+                {% for post in posts %}
+                    <a href="{{ url_for('post', name=post.path.replace('posts/', '')) }}" class="internal">
+                        <h2>{{ post.title }} </h2>
+                    </a>
+                    <p class = "post-meta">Posted on {{ post.date }}</p>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

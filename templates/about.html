@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+
+{% block header %}
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('{{ url_for('static', filename ='img/home-bg.jpg')}}')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="page-heading">
+              <h1>About</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <p>I am a Masters of Data Science student at the University of Technology Sydney and
+              I'm currently working as an Analyst in credit risk modelling and forecasting at the Commonwealth Bank of Australia.</p>
+          <p>I have experience applying statistical modelling, machine learning, data analysis and visualization to solve complex problems. Proficient in R, Python, Databases and Statistics.
+              I'm a Data Science enthusiast and regular attendee of meetups such as the Data Science Sydney Meetup.</p>
+        </div>
+      </div>
+</div>
+
+<hr>
+{% endblock %}
