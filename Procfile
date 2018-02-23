@@ -1,1 +1,1 @@
-web: gunicorn --log-file - jaredchungblog:app
+web: gunicorn --log-file - jaredchung_blog:app
