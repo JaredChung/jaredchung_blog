@@ -16,6 +16,8 @@ The topics to be covered include:
 
 We will be using the daily US Beer Sales dataset  as a way of comparing each of the forecasting techniques. The data is comprised of 1992-2016 overtime as shown in the table below. Tha main packages used are <i>forecast</i> for R and <i>statsmodels for Python.
 
+[]()
+
 
 ## Naive Method
 
@@ -23,7 +25,7 @@ The <b>Naive</b> approach is the most basic way to forecast, is to use the last 
 
 	#R
 	data[nrow(data)-1,]
-	
+
 	#Python
 	data[len(data)-1]
 
@@ -38,10 +40,9 @@ A variation to the Simple Average is the <b>Moving Average</b>. Using a specifie
 
 	#R
 	mean(train$count)
-	
+
 	#Python
 	train['Count'].mean()
-
 
 ## Exponential Smoothing
 
@@ -51,7 +52,7 @@ We have looked at a few examples involving taking averages of past points, in ma
 	library(forecast)
 	ses(data, alpha = 0.2, initital = "simple", h = 3)
 	#Python
-	
+
 	from statsmodels.tsa.api import SimpleExpSmoothing
 	fit = SimpleExpSmoothing(np.asarray(train['Count'])).fit(smoothing_level = 0.2, optimzed = False)
 	fit.forecast(len(test))
@@ -63,7 +64,7 @@ The <b>Holt Winters</b> approach extends the simple exponential smoothing. It ca
 	#R
 	library(forecast)
 	fit <- hw(data, seasonal = "additive")
-	
+
 	#Python
 	from statsmodel.tsa.api import ExponentialSmoothing
 	fit = ExponentialSmoothing(np.asarray(train['Count]), seasonal_period = 7, trend = 'add', seasonal = 'add')
@@ -73,12 +74,11 @@ The <b>Holt Winters</b> approach extends the simple exponential smoothing. It ca
 
 	#R
 	library(forecast)
-	
 	fit <- auto.arima(data)
-	
+
 	#Python
 	from statsmodels.tsa.statespace import SARIMAX
-	
+
 	fit = SARIMAX(train['count'], order = (2,1,4), seasonal_order = (0,1,1,7)).fit()
 
 
