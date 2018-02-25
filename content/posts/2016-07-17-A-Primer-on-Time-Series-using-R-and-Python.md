@@ -16,6 +16,7 @@ The topics to be covered include:
 
 We will be using the daily US Beer Sales dataset  as a way of comparing each of the forecasting techniques. The data is comprised of 1992-2016 overtime as shown in the table below. Tha main packages used are <i>forecast</i> for R and <i>statsmodels for Python.
 
+
 []()
 
 
@@ -23,8 +24,10 @@ We will be using the daily US Beer Sales dataset  as a way of comparing each of 
 
 The <b>Naive</b> approach is the most basic way to forecast, is to use the last data point available and forecast future values. The below code represents how simple the implementation is.
 
+	#Extract the last value
+
 	#R
-	data[nrow(data)-1,]
+	data[nrow(data)-1,] 
 
 	#Python
 	data[len(data)-1]
@@ -33,16 +36,24 @@ The <b>Naive</b> approach is the most basic way to forecast, is to use the last 
 
 You can see how using <b>Naive</b> method might create some issues if the last value is unsually high or low. Another way to tackle this problem is to take a <b>Simple Average </b>, which is essentially calculated by taking an average of all previous values.
 
+	#R
+	mean(data$value)
+
+	#Python
+	data.value.mean()
+
 
 ## Moving Average
 
 A variation to the Simple Average is the <b>Moving Average</b>. Using a specified window (e.g 12) take the average of those data points and then shift one point and repeat. The benefit of using a moving average is that it can capture the direction or also called the Trend of the data.
 
 	#R
-	mean(train$count)
+	library(forecast)
+	ma(train$count, order = 12)
 
 	#Python
-	train['Count'].mean()
+	train['Count'].rolling(12).mean()
+
 
 ## Exponential Smoothing
 
@@ -59,7 +70,7 @@ We have looked at a few examples involving taking averages of past points, in ma
 
 ## Holt Winters
 
-The <b>Holt Winters</b> approach extends the simple exponential smoothing. It can be summarised in the below equation which essentially combines the original exponential smoothing with a trend and seasonal component.
+The <b>Holt Winters</b> technique extends the simple exponential smoothing. It can be summarised in the below equation which essentially combines the original exponential smoothing with a trend and seasonal component.
 
 	#R
 	library(forecast)
@@ -71,6 +82,7 @@ The <b>Holt Winters</b> approach extends the simple exponential smoothing. It ca
 
 ## Arima
 
+Another popular method is <b>Arima</b> which stands for <i> Autoregressive Integrated Moving Average</i>. One of the main differences compared to the previous methods is that it is based on correlations.
 
 	#R
 	library(forecast)
@@ -84,7 +96,7 @@ The <b>Holt Winters</b> approach extends the simple exponential smoothing. It ca
 
 ## Conclusion
 
-
+In this blog we have explored a variety of different forecasting techniques which can be easily applied. The choose of technique depends on movements of your data, for example, determining whether there is a particular trend or seasonality. Benchmarking which is the best method depends on setting up  
 
 
 
