@@ -14,10 +14,10 @@ The topics to be covered include:
 * Holt's Winter method
 * ARIMA
 
-We will be using the daily US Beer Sales dataset  as a way of comparing each of the forecasting techniques. The data is comprised of 1992-2016 overtime as shown in the table below. The main packages used are <i>forecast</i> package for R and <i>statsmodels</i>package for Python.
+We will be using the daily US Beer Sales dataset  as a way of comparing each of the forecasting techniques. The data is comprised of 1992-2016 overtime as shown in the table below. The main packages used are <i>forecast</i> package for R and <i>statsmodels</i> package for Python.
 
 
-![img](../post_img/timeseries_table.PNG)
+![img](https://github.com/JaredChung/jaredchung_blog/blob/master/content/post_img/timeseries_table.PNG)
 
 ![img](../post_img/timeseries_plot1.jpeg)
 
@@ -28,7 +28,7 @@ The <b>Naive</b> approach is the most simplest forecasting technique, taking the
 
     #R
     data[nrow(data)-1,] #Extract the last value
-
+    
     #Python
     data[len(data)-1] #Extract the last value
 
@@ -40,7 +40,7 @@ You can see how using Naive method might create some issues if the last value is
 
     #R
     mean(data$value)
-
+    
     #Python
     data.value.mean()
 
@@ -53,7 +53,7 @@ A variation to the Simple Average is the <b>Moving Average</b>. Using a specifie
     #R
     library(forecast)
     ma(train$count, order = 12)
-
+    
     #Python
     train['Count'].rolling(12).mean()
 
@@ -67,7 +67,7 @@ We have looked at a few examples involving taking averages of past points, in ma
     library(forecast)
     ses(data, alpha = 0.2, initital = "simple", h = 36)
     #Python
-
+    
     from statsmodels.tsa.api import SimpleExpSmoothing
     fit = SimpleExpSmoothing(np.asarray(train['Count'])).fit(smoothing_level = 0.2, optimzed = False)
     fit.forecast(len(test))
@@ -81,11 +81,11 @@ The <b>Holt Winters</b> technique extends the simple exponential smoothing. It c
     #R
     library(forecast)
     fit <- hw(data, seasonal = "additive")
-
+    
     # "ets" function is an automated version
     ets_model <- ets(ts_data)
     ets_forecast <- forecast(ets_model, h = 36)
-
+    
     #Python
     from statsmodel.tsa.api import ExponentialSmoothing
     fit = ExponentialSmoothing(np.asarray(train['Count]), seasonal_period = 7, trend = 'add', seasonal = 'add')
@@ -99,10 +99,10 @@ Another popular method is <b>Arima</b> which stands for <i> Autoregressive Integ
     #R
     library(forecast)
     fit <- auto.arima(data)
-
+    
     #Python
     from statsmodels.tsa.statespace import SARIMAX
-
+    
     fit = SARIMAX(train['count'], order = (2,1,4), seasonal_order = (0,1,1,7)).fit()
 
 ![img](../post_img/timeseries_arima.jpeg)
