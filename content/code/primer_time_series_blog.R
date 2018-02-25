@@ -51,14 +51,18 @@ ggplot(simple_average, aes(DATE,value)) +
   labs(x="date", y = "sales", title = "US Beer Sales")
 
 
+###################
+# Time Series data
+###################
+
+
+ts_data <- ts(data$value,start = c(1992, 1),frequency = 12)
+
 
 ###########################################
 # Moving Average
 ############################################
 
-
-
-ts_data <- ts(data$value,start = c(1992, 1),frequency = 12)
 
 mov_avg <- ma(ts_data, order = 12)
 
@@ -66,9 +70,19 @@ moving_average <- forecast(mov_avg, h = 36)
 
 autoplot(moving_average) + labs(title = "US Beer Sales")
 
+
 ###########################################
 # Exponential Smoothing
 ############################################
+
+ses_model <- ses(ts_data, h = 36)
+
+autoplot(ses_model) + labs(title = "US Beer Sales")
+
+###########################################
+# Holt winters
+############################################
+
 
 holt_winter <- hw(ts_data, h = 36)
 
