@@ -17,7 +17,7 @@ The topics to be covered include:
 We will be using the daily US Beer Sales dataset  as a way of comparing each of the forecasting techniques. The data is comprised of 1992-2016 overtime as shown in the table below. The main packages used are <i>forecast</i> package for R and <i>statsmodels</i> package for Python.
 
 
-![img](https://github.com/JaredChung/jaredchung_blog/blob/master/content/post_img/timeseries_table.PNG)
+![img](../post_img/timeseries_table.png)
 
 ![img](../post_img/timeseries_plot1.jpeg)
 
