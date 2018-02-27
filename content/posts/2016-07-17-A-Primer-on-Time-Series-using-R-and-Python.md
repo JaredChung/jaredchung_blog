@@ -17,9 +17,9 @@ The topics to be covered include:
 We will be using the daily US Beer Sales dataset  as a way of comparing each of the forecasting techniques. The data is comprised of 1992-2016 overtime as shown in the table below. The main packages used are <i>forecast</i> package for R and <i>statsmodels</i> package for Python.
 
 
-![img](../post_img/timeseries_table.png)
+![](/../post_img/timeseries_table.png)
 
-![img](../post_img/timeseries_plot1.jpeg)
+![img](/../post_img/timeseries_plot1.jpeg)
 
 ## Naive Method
 
@@ -32,7 +32,7 @@ The <b>Naive</b> approach is the most simplest forecasting technique, taking the
     #Python
     data[len(data)-1] #Extract the last value
 
-![img](../post_img/timeseries_naive.jpeg)
+![img](/../post_img/timeseries_naive.jpeg)
 
 ## Simple Average
 
@@ -44,7 +44,7 @@ You can see how using Naive method might create some issues if the last value is
     #Python
     data.value.mean()
 
-![img](../post_img/timeseries_simple_average.jpeg)
+![img](/../post_img/timeseries_simple_average.jpeg)
 
 ## Moving Average
 
