@@ -1,6 +1,6 @@
 import os
-from flask import Flask, render_template, request, flash
-from flask_flatpages import FlatPages
+from flask import Flask, render_template, request, flash, render_template_string, Markup
+from flask_flatpages import FlatPages, pygmented_markdown
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, TextAreaField, validators
 from flask_mail import Message, Mail
@@ -14,6 +14,12 @@ POST_DIR = 'posts'
 
 app = Flask(__name__)
 flatpages = FlatPages(app)
+
+def prerender_jinja(text):
+    prerendered_body = render_template_string(Markup(text))
+    return pygmented_markdown(prerendered_body)
+
+app.config['FLATPAGES_HTML_RENDERER'] = prerender_jinja
 
 app.config.from_object(__name__)
 app.secret_key = 'personal key'
