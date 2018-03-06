@@ -3,7 +3,7 @@ title:  "A Primer on Time Series using R and Python"
 date:  2016-07-17
 categories: R, Python
 
-Time Series is an area of data science which is often overlooked. The majority of books and tutorials mainly focus on traditional <b> Classification </b> and <b> Regression </b> based problems. In this blog, we will look at variety of forecasting time series techniques utilizing the programming languages R and Python.
+Time Series is an area of data science which is often overlooked. The majority of books and tutorials mainly focus on traditional <b> Classification </b> and <b> Regression </b> based problems. In this blog, we will look at variety of forecasting time series techniques while utilizing the programming languages R and Python.
 
 The topics to be covered include:
 
@@ -14,8 +14,7 @@ The topics to be covered include:
 * Holt's Winter method
 * ARIMA
 
-We will be using the daily US Beer Sales dataset  as a way of comparing each of the forecasting techniques. The data is comprised of 1992-2016 overtime as shown in the table below. The main packages used are <i>forecast</i> package for R and <i>statsmodels</i> package for Python.
-
+I'll be using the daily US Beer Sales dataset to test out the forecasting techniques. The data is comprised of sales between 1992 to 2016 as shown in the table below. The main packages that will be used is the <i>forecast</i> package for R and the <i>statsmodels</i> package for Python.
 
 ![your-alt-text]({{ url_for('static', filename = 'img/post_img/timeseries_table.png') }})
 
@@ -24,12 +23,12 @@ We will be using the daily US Beer Sales dataset  as a way of comparing each of 
 
 ## Naive Method
 
-The <b>Naive</b> approach is the most simplest forecasting technique, taking the last data point available and forecasting all future values based on this value. The below code represents how simplicity of the implementation. This method is most effective if the time series is quite stable overtime.
+The <b>Naive</b> approach is by far the most simplest forecasting technique. It is calculated by taking the last data point available and forecasting all future values based on this value. The below code represents how simplicity of the implementation. This method is most effective if the time series is quite stable overtime.
 
 
     #R
     data[nrow(data)-1,] #Extract the last value
-
+    
     #Python
     data[len(data)-1] #Extract the last value
 
@@ -38,11 +37,11 @@ The <b>Naive</b> approach is the most simplest forecasting technique, taking the
 
 ## Simple Average
 
-You can see how using Naive method might create some issues if the last value is unusually high or low. Another way to tackle this problem is to take a <b>Simple Average </b>, which is calculated by taking an average of all previous values. This technique can smooth out volatility in the data.
+You can see how the Naive method might create some issues, if the last value is unusually high or low, this will then be used to forecast future values. Another way to tackle this problem is to take a <b>Simple Average </b>, which is calculated by taking an average of all previous values. This technique can smooth out volatility in the data.
 
     #R
     mean(data$value)
-
+    
     #Python
     data.value.mean()
 
@@ -51,12 +50,12 @@ You can see how using Naive method might create some issues if the last value is
 
 ## Moving Average
 
-A variation to the Simple Average is the <b>Moving Average</b>. Using a specified window (e.g 12) take the average of those data points and then shift one point and repeat. The benefit of using a moving average is that it can capture the direction or as it is also called "Trend" of the data.
+A variation to the Simple Average is the <b>Moving Average</b>. Using a specified window (e.g 12) take the average of those data points and then shift one point and repeat. The benefit of using a moving average is that it is able to adapt to changes over time and as such can capture the "Trend" of the data.
 
     #R
     library(forecast)
     ma(train$count, order = 12)
-
+    
     #Python
     train['Count'].rolling(12).mean()
 
