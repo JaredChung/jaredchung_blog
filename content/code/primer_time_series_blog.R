@@ -12,10 +12,13 @@ data$DATE <- dmy(data$DATE)
 head(data)
 
 
-ggplot(data, aes(DATE,value)) + 
+plot1 <- ggplot(data, aes(DATE,value)) + 
       geom_line() + 
       scale_x_date(date_breaks = "3 year") +
       labs(x="date", y = "sales", title = "US Beer Sales")
+
+ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/post_img/time_series_blog/plot1.png",plot1
+       ,height=7,width=7,dpi=100)
 
 ###########################################
 # NAIVE

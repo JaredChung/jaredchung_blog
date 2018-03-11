@@ -15,6 +15,7 @@ POST_DIR = 'posts'
 app = Flask(__name__)
 flatpages = FlatPages(app)
 
+#used to render jinja templates in the markdown files so images can be displayed
 def prerender_jinja(text):
     prerendered_body = render_template_string(Markup(text))
     return pygmented_markdown(prerendered_body)
@@ -37,8 +38,7 @@ app.config['SECURITY_EMAIL_SENDER'] = 'jared_chung@hotmail.com'
 
 mail = Mail(app)
 
-#mail.init_app(app)
-
+# Create contact form
 class ContactForm(FlaskForm):
     name = StringField("Name", [validators.DataRequired("Please enter your name.")])
     email = StringField("Email", [validators.DataRequired("Please enter your email."), validators.Email()])

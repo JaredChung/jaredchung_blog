@@ -3,7 +3,9 @@ title:  "A Primer on Time Series using R and Python"
 date:  2016-07-17
 categories: R, Python
 
-Time Series is an area of data science which is often overlooked. The majority of books and tutorials mainly focus on traditional <b> Classification </b> and <b> Regression </b> based problems. In this blog, we will look at variety of forecasting time series techniques while utilizing the programming languages R and Python.
+Time Series is an area of data science which is often overlooked. The majority of books and tutorials mainly focus on traditional <b> Classification </b> and <b> Regression </b> based problems. 
+
+In this blog we will look at variety of forecasting time series techniques while utilizing the programming languages R and Python.
 
 The topics to be covered include:
 
@@ -18,7 +20,7 @@ I'll be using the daily US Beer Sales dataset to test out the forecasting techni
 
 ![your-alt-text]({{ url_for('static', filename = 'img/post_img/timeseries_table.png') }})
 
-![your-alt-text]({{ url_for('static', filename = 'img/post_img/timeseries_plot1.jpeg') }})
+![your-alt-text]({{ url_for('static', filename = 'img/post_img/plot1.jpeg') }})
 
 
 ## Naive Method
@@ -28,7 +30,7 @@ The <b>Naive</b> approach is by far the most simplest forecasting technique. It 
 
     #R
     data[nrow(data)-1,] #Extract the last value
-    
+
     #Python
     data[len(data)-1] #Extract the last value
 
@@ -50,7 +52,7 @@ You can see how the Naive method might create some issues, if the last value is 
 
 ## Moving Average
 
-A variation to the Simple Average is the <b>Moving Average</b>. Using a specified window (e.g 12) take the average of those data points and then shift one point and repeat. The benefit of using a moving average is that it is able to adapt to changes over time and as such can capture the "Trend" of the data.
+A variation to Simple Average is the <b>Moving Average</b>. Using a specified window (e.g 12), take the average of the data points after this shift one point and repeat. This is sometimes called a "sliding window". The benefit of using a moving average is that it is able to adapt to changes over time and as such can capture the "Trend" of the data.
 
     #R
     library(forecast)
@@ -63,7 +65,7 @@ A variation to the Simple Average is the <b>Moving Average</b>. Using a specifie
 
 ## Exponential Smoothing
 
-We have looked at a few examples involving taking averages of past points, in many cases, only the most recent information is needed to influence our future forecast. <b>Exponential Smoothing</b> applies a weighting to past values with larger weights assigned to more recent observations.
+We have looked at a few examples involving taking averages of past points, in many cases, only the most recent information is needed to influence our future forecast. <b>Exponential Smoothing</b> applies a weighting to past values with larger weights assigned to more recent observations. The weights decrease exponentially the further into the past.  
 
     #R
     library(forecast)
@@ -80,7 +82,7 @@ We have looked at a few examples involving taking averages of past points, in ma
 
 ## Holt Winters
 
-The <b>Holt Winters</b> technique extends the simple exponential smoothing. It can be summarised in the below equation which essentially combines the original exponential smoothing with a trend and seasonal component.
+The <b>Holt Winters</b> technique extends the simple exponential smoothing. The techniques encompasses three smoothing equations, the first part is the level (essentially exponential smoothing), the second part is the trend and the last part is the seasonality. This can be broken into two variations. One variation is the "additive" method, which is suitable for constant seasonality. The second variation is the "multiplicative" method which allows seasonality to change over time.
 
     #R
     library(forecast)
@@ -100,7 +102,7 @@ The <b>Holt Winters</b> technique extends the simple exponential smoothing. It c
 
 ## Arima
 
-Another popular method is <b>Arima</b> which stands for <i> Autoregressive Integrated Moving Average</i>. One of the main differences compared to the previous methods is that it is based on correlations.
+Another popular method is <b>Arima</b> which is made up of three parts, autoregressive, integrated and moving average . One of the main differences compared to the previous methods is that it is based on autocorrelations. The first part of states the # of linear combinations of past values. The second part denotes how many times the time series has been "differenced" (transformed) so it is stationary (time series which doesn't depend on time). The third and final part is the moving average which is similar to the first part except that it is a linear combination of the error terms.
 
     #R
     library(forecast)
