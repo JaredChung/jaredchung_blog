@@ -20,7 +20,7 @@ I'll be using the daily US Beer Sales dataset to test out the forecasting techni
 
 ![your-alt-text]({{ url_for('static', filename = 'img/post_img/timeseries_table.png') }})
 
-![your-alt-text]({{ url_for('static', filename = 'img/post_img/plot1.jpeg') }})
+![your-alt-text]({{ url_for('static', filename = 'img/post_img/time_series_blog_plot1.png') }})
 
 
 ## Naive Method
@@ -30,11 +30,11 @@ The <b>Naive</b> approach is by far the most simplest forecasting technique. It 
 
     #R
     data[nrow(data)-1,] #Extract the last value
-
+    
     #Python
     data[len(data)-1] #Extract the last value
 
-![your-alt-text]({{ url_for('static', filename = 'img/post_img/timeseries_naive.jpeg') }})
+![your-alt-text]({{ url_for('static', filename = 'img/post_img/time_series_blog_plot2.png') }})
 
 
 ## Simple Average

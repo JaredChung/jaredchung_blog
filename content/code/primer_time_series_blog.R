@@ -14,11 +14,11 @@ head(data)
 
 plot1 <- ggplot(data, aes(DATE,value)) + 
       geom_line() + 
-      scale_x_date(date_breaks = "3 year") +
+      scale_x_date(date_breaks = "4 year") +
       labs(x="date", y = "sales", title = "US Beer Sales")
 
-ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/post_img/time_series_blog/plot1.png",plot1
-       ,height=7,width=7,dpi=100)
+ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/post_img/time_series_blog_plot1.png",plot1
+       ,height=7,width=7,dpi=300)
 
 ###########################################
 # NAIVE
@@ -29,12 +29,16 @@ predict_naive <- data.frame(list(DATE=seq(data[nrow(data)-1,]$DATE+1,data[nrow(d
 
 predict_naive$value <- data[nrow(data)-1,]$value
 
-naive <- rbind(data,predict_data)
+naive <- rbind(data,predict_naive)
 
-ggplot(method_1, aes(DATE,value)) + 
+plot2 <- ggplot(naive, aes(DATE,value)) + 
   geom_line() + 
-  scale_x_date(date_breaks = "3 year") +
+  scale_x_date(date_breaks = "4 year") +
   labs(x="date", y = "sales", title = "US Beer Sales")
+
+ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/post_img/time_series_blog_plot2.png",plot2
+       ,height=7,width=7,dpi=300)
+
 
 ###########################################
 # Simple Average
@@ -50,9 +54,11 @@ simple_average <- rbind(data,sim_avg)
 
 ggplot(simple_average, aes(DATE,value)) + 
   geom_line() + 
-  scale_x_date(date_breaks = "3 year") +
+  scale_x_date(date_breaks = "4 year") +
   labs(x="date", y = "sales", title = "US Beer Sales")
 
+ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/post_img/time_series_blog/plot2.png",plot2
+       ,height=7,width=7,dpi=300)
 
 ###################
 # Time Series data
