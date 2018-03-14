@@ -17,7 +17,7 @@ plot1 <- ggplot(data, aes(DATE,value)) +
       scale_x_date(date_breaks = "4 year") +
       labs(x="date", y = "sales", title = "US Beer Sales")
 
-ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/post_img/time_series_blog_plot1.png",plot1
+ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/post_img/blogplot1.png",plot1
        ,height=7,width=7,dpi=300)
 
 ###########################################
@@ -36,7 +36,7 @@ plot2 <- ggplot(naive, aes(DATE,value)) +
   scale_x_date(date_breaks = "4 year") +
   labs(x="date", y = "sales", title = "US Beer Sales")
 
-ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/post_img/time_series_blog_plot2.png",plot2
+ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/post_img/time_series_blog_plot2.jpeg",plot2
        ,height=7,width=7,dpi=300)
 
 
@@ -52,12 +52,12 @@ sim_avg$value <- mean(data$value)
 
 simple_average <- rbind(data,sim_avg)
 
-ggplot(simple_average, aes(DATE,value)) + 
+plot3 <- ggplot(simple_average, aes(DATE,value)) + 
   geom_line() + 
   scale_x_date(date_breaks = "4 year") +
   labs(x="date", y = "sales", title = "US Beer Sales")
 
-ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/post_img/time_series_blog/plot2.png",plot2
+ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/post_img/time_series_blog/plot3.png",plot3
        ,height=7,width=7,dpi=300)
 
 ###################
@@ -77,8 +77,10 @@ mov_avg <- ma(ts_data, order = 12)
 
 moving_average <- forecast(mov_avg, h = 36)
 
-autoplot(moving_average) + labs(title = "US Beer Sales")
+plot4<- autoplot(moving_average) + labs(title = "US Beer Sales")
 
+ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/post_img/time_series_blog_plot4.jpeg",plot4
+       ,height=7,width=7,dpi=300)
 
 ###########################################
 # Exponential Smoothing

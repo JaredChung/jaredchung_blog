@@ -18,9 +18,9 @@ The topics to be covered include:
 
 I'll be using the daily US Beer Sales dataset to test out the forecasting techniques. The data is comprised of sales between 1992 to 2016 as shown in the table below. The main packages that will be used is the <i>forecast</i> package for R and the <i>statsmodels</i> package for Python.
 
-![your-alt-text]({{ url_for('static', filename = 'img/post_img/timeseries_table.png') }})
+![]({{ url_for('static', filename = 'img/post_img/timeseries_table.png') }})
 
-![your-alt-text]({{ url_for('static', filename = 'img/post_img/time_series_blog_plot1.png') }})
+![]({{ url_for('static', filename = 'img/post_img/testplot1.png') }})
 
 
 ## Naive Method
@@ -34,7 +34,7 @@ The <b>Naive</b> approach is by far the most simplest forecasting technique. It 
     #Python
     data[len(data)-1] #Extract the last value
 
-![your-alt-text]({{ url_for('static', filename = 'img/post_img/time_series_blog_plot2.png') }})
+![]({{ url_for('static', filename = 'img/post_img/time_series_blog_plot2.jpeg') }})
 
 
 ## Simple Average
