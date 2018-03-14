@@ -20,7 +20,7 @@ I'll be using the daily US Beer Sales dataset to test out the forecasting techni
 
 ![]({{ url_for('static', filename = 'img/postimg/timeseries_table.png') }})
 
-![]({{ url_for('static', filename = 'img/postimg/timeplot1.png') }})
+![]({{ url_for('static', filename = 'img/postimg/timeplot1.jpeg') }})
 
 
 ## Naive Method
