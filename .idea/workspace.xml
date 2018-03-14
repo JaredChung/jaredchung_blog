@@ -2,21 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="18b0c900-f482-4847-a48a-7c4c5f39b77b" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/img/post_img/Kaggle_Image.PNG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/img/post_img/plot1.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/img/post_img/time_series_blog/plot2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/img/post_img/time_series_blog_plot1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/img/post_img/time_series_blog_plot2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/img/post_img/timeseries_arima.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/img/post_img/timeseries_exponential_smoothing.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/img/post_img/timeseries_holt_winters.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/img/post_img/timeseries_moving_average.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/img/post_img/timeseries_naive.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/img/post_img/timeseries_plot1.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/img/post_img/timeseries_simple_average.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/img/post_img/timeseries_table.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/content/code/primer_time_series_blog.R" afterPath="$PROJECT_DIR$/content/code/primer_time_series_blog.R" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/content/posts/2016-07-17-A-Primer-on-Time-Series-using-R-and-Python.md" afterPath="$PROJECT_DIR$/content/posts/2016-07-17-A-Primer-on-Time-Series-using-R-and-Python.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -596,7 +581,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23630504" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32880434" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />

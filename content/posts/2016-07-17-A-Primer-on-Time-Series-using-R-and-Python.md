@@ -18,9 +18,9 @@ The topics to be covered include:
 
 I'll be using the daily US Beer Sales dataset to test out the forecasting techniques. The data is comprised of sales between 1992 to 2016 as shown in the table below. The main packages that will be used is the <i>forecast</i> package for R and the <i>statsmodels</i> package for Python.
 
-![]({{ url_for('static', filename = 'img/post_img/timeseries_table.png') }})
+![]({{ url_for('static', filename = 'img/postimg/timeseries_table.png') }})
 
-![]({{ url_for('static', filename = 'img/post_img/testplot1.png') }})
+![]({{ url_for('static', filename = 'img/postimg/testplot1.png') }})
 
 
 ## Naive Method
@@ -34,7 +34,7 @@ The <b>Naive</b> approach is by far the most simplest forecasting technique. It 
     #Python
     data[len(data)-1] #Extract the last value
 
-![]({{ url_for('static', filename = 'img/post_img/time_series_blog_plot2.jpeg') }})
+![]({{ url_for('static', filename = 'img/postimg/time_series_blog_plot2.jpeg') }})
 
 
 ## Simple Average
@@ -47,7 +47,7 @@ You can see how the Naive method might create some issues, if the last value is 
     #Python
     data.value.mean()
 
-![your-alt-text]({{ url_for('static', filename = 'img/post_img/timeseries_simple_average.jpeg') }})
+![your-alt-text]({{ url_for('static', filename = 'img/postimg/timeseries_simple_average.jpeg') }})
 
 
 ## Moving Average
@@ -61,7 +61,7 @@ A variation to Simple Average is the <b>Moving Average</b>. Using a specified wi
     #Python
     train['Count'].rolling(12).mean()
 
-![your-alt-text]({{ url_for('static', filename = 'img/post_img/timeseries_moving_average.jpeg') }})
+![your-alt-text]({{ url_for('static', filename = 'img/postimg/timeseries_moving_average.jpeg') }})
 
 ## Exponential Smoothing
 
@@ -77,7 +77,7 @@ We have looked at a few examples involving taking averages of past points, in ma
     fit.forecast(len(test))
 
 
-![your-alt-text]({{ url_for('static', filename = 'img/post_img/timeseries_exponential_smoothing.jpeg') }})
+![your-alt-text]({{ url_for('static', filename = 'img/postimg/timeseries_exponential_smoothing.jpeg') }})
 
 
 ## Holt Winters
@@ -97,7 +97,7 @@ The <b>Holt Winters</b> technique extends the simple exponential smoothing. The 
     fit = ExponentialSmoothing(np.asarray(train['Count]), seasonal_period = 7, trend = 'add', seasonal = 'add')
 
 
-![your-alt-text]({{ url_for('static', filename = 'img/post_img/timeseries_holt_winters.jpeg') }})
+![your-alt-text]({{ url_for('static', filename = 'img/postimg/timeseries_holt_winters.jpeg') }})
 
 
 ## Arima
@@ -114,7 +114,7 @@ Another popular method is <b>Arima</b> which is made up of three parts, autoregr
     fit = SARIMAX(train['count'], order = (2,1,4), seasonal_order = (0,1,1,7)).fit()
 
 
-![your-alt-text]({{ url_for('static', filename = 'img/post_img/timeseries_arima.jpeg') }})
+![your-alt-text]({{ url_for('static', filename = 'img/postimg/timeseries_arima.jpeg') }})
 
 ## Conclusion
 
