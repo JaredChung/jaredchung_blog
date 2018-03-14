@@ -17,7 +17,7 @@ plot1 <- ggplot(data, aes(DATE,value)) +
       scale_x_date(date_breaks = "4 year") +
       labs(x="date", y = "sales", title = "US Beer Sales")
 
-ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/post_img/blogplot1.png",plot1
+ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/postimg/testplot1.png",plot1
        ,height=7,width=7,dpi=300)
 
 ###########################################

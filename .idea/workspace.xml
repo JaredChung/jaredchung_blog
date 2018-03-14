@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="18b0c900-f482-4847-a48a-7c4c5f39b77b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/content/posts/2016-07-17-A-Primer-on-Time-Series-using-R-and-Python.md" afterPath="$PROJECT_DIR$/content/posts/2016-07-17-A-Primer-on-Time-Series-using-R-and-Python.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/content/code/primer_time_series_blog.R" afterPath="$PROJECT_DIR$/content/code/primer_time_series_blog.R" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
