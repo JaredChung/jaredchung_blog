@@ -12,13 +12,13 @@ data$DATE <- dmy(data$DATE)
 head(data)
 
 
-plot1 <- ggplot(data, aes(DATE,value)) + 
+ggplot(data, aes(DATE,value)) + 
       geom_line() + 
       scale_x_date(date_breaks = "4 year") +
       labs(x="date", y = "sales", title = "US Beer Sales")
 
 ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/postimg/testplot1.png",plot1
-       ,height=7,width=7,dpi=300)
+       ,height=7,width=7,dpi=300,scale = 0.1)
 
 ###########################################
 # NAIVE
@@ -31,7 +31,7 @@ predict_naive$value <- data[nrow(data)-1,]$value
 
 naive <- rbind(data,predict_naive)
 
-plot2 <- ggplot(naive, aes(DATE,value)) + 
+ggplot(naive, aes(DATE,value)) + 
   geom_line() + 
   scale_x_date(date_breaks = "4 year") +
   labs(x="date", y = "sales", title = "US Beer Sales")
@@ -52,7 +52,7 @@ sim_avg$value <- mean(data$value)
 
 simple_average <- rbind(data,sim_avg)
 
-plot3 <- ggplot(simple_average, aes(DATE,value)) + 
+ggplot(simple_average, aes(DATE,value)) + 
   geom_line() + 
   scale_x_date(date_breaks = "4 year") +
   labs(x="date", y = "sales", title = "US Beer Sales")
@@ -77,7 +77,7 @@ mov_avg <- ma(ts_data, order = 12)
 
 moving_average <- forecast(mov_avg, h = 36)
 
-plot4<- autoplot(moving_average) + labs(title = "US Beer Sales")
+autoplot(moving_average) + labs(title = "US Beer Sales")
 
 ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/post_img/time_series_blog_plot4.jpeg",plot4
        ,height=7,width=7,dpi=300)
