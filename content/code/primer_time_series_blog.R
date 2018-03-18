@@ -4,10 +4,15 @@
 library(forecast)
 library(ggplot2)
 library(lubridate)
+library(caret)
 
 data <- read.csv("C:/Users/Jared Chung/Desktop/jaredchung_blog/content/data/beer_data_1992_2016.csv")
 
 data$DATE <- dmy(data$DATE)
+
+train <- data[data$DATE <= "2012-12-01",]
+test <- data[data$DATE > "2012-12-01",]
+
 
 head(data)
 
@@ -18,23 +23,22 @@ ggplot(data, aes(DATE,value)) +
       labs(x="date", y = "sales", title = "US Beer Sales")
 
 ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/postimg/testplot1.png",plot1
-       ,height=7,width=7,dpi=300,scale = 0.1)
+       ,height=7,width=7,dpi=300,scale = 1)
 
 ###########################################
 # NAIVE
 ############################################
 
-predict_naive <- data.frame(list(DATE=seq(data[nrow(data)-1,]$DATE+1,data[nrow(data)-1,]$DATE+(3*365),"month"),
-                                value = rep(NA,36)))
 
-predict_naive$value <- data[nrow(data)-1,]$value
+predict_naive <- data.frame(DATE = test$DATE, 
+                            value = rep(train[nrow(train),]$value,nrow(test)))
 
-naive <- rbind(data,predict_naive)
 
-ggplot(naive, aes(DATE,value)) + 
+ggplot(data=data, aes(DATE,value),colour = 'black') + 
   geom_line() + 
+  geom_line(data=predict_naive,aes(DATE,value),colour = "red") +
   scale_x_date(date_breaks = "4 year") +
-  labs(x="date", y = "sales", title = "US Beer Sales")
+  labs(x="date", y = "sales", title = "US Beer Sales - Naive")
 
 ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/post_img/time_series_blog_plot2.jpeg",plot2
        ,height=7,width=7,dpi=300)
@@ -45,17 +49,17 @@ ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/post_img/time_se
 ############################################
 
 
-sim_avg <- data.frame(list(DATE=seq(data[nrow(data)-1,]$DATE+1,data[nrow(data)-1,]$DATE+(3*365),"month"),
-                                 value = rep(NA,36)))
 
-sim_avg$value <- mean(data$value)
+sim_avg <- data.frame(DATE = test$DATE, 
+                            value = rep(mean(test$value),nrow(test)))
 
-simple_average <- rbind(data,sim_avg)
 
-ggplot(simple_average, aes(DATE,value)) + 
+
+ggplot(data, aes(DATE,value)) + 
   geom_line() + 
   scale_x_date(date_breaks = "4 year") +
-  labs(x="date", y = "sales", title = "US Beer Sales")
+  geom_line(data=sim_avg,aes(DATE,value),colour = "red") + 
+  labs(x="date", y = "sales", title = "US Beer Sales - Simple Average")
 
 ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/post_img/time_series_blog/plot3.png",plot3
        ,height=7,width=7,dpi=300)
@@ -65,8 +69,11 @@ ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/post_img/time_se
 ###################
 
 
-ts_data <- ts(data$value,start = c(1992, 1),frequency = 12)
+ts_data <- ts(data$value,start = c(1992, 1), frequency = 12)
 
+train_ts <- window(ts_data, start = c(1992,1), end = c(2012,12))
+
+test_ts <- window(ts_data, start = c(2013,1))
 
 ###########################################
 # Moving Average
@@ -77,7 +84,7 @@ mov_avg <- ma(ts_data, order = 12)
 
 moving_average <- forecast(mov_avg, h = 36)
 
-autoplot(moving_average) + labs(title = "US Beer Sales")
+autoplot(moving_average) + labs(title = "US Beer Sales - Moving Average")
 
 ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/post_img/time_series_blog_plot4.jpeg",plot4
        ,height=7,width=7,dpi=300)
