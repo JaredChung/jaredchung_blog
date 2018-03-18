@@ -18,12 +18,33 @@ head(data)
 
 
 ggplot(data, aes(DATE,value)) + 
-      geom_line() + 
-      scale_x_date(date_breaks = "4 year") +
-      labs(x="date", y = "sales", title = "US Beer Sales")
+  geom_line() + 
+  scale_x_date(date_breaks = "4 year") +
+  labs(x="date", y = "sales", title = "US Beer Sales")
 
-ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/postimg/testplot1.png",plot1
-       ,height=7,width=7,dpi=300,scale = 1)
+
+
+# Main Plotting Function
+forecast_plot <- function(data, 
+                          forecast_data,
+                          name = "") {
+    
+    ggplot(data=data, aes(DATE,value),colour = 'black') +
+    geom_line() + 
+    geom_line(data=forecast_data,aes(DATE,value),colour = "blue", size = 1) +
+    scale_x_date(date_breaks = "4 year") +
+    labs(x="date", y = "sales", title = paste("US Beer Sales -", name, sep = ""))
+  
+}
+
+result <- function(test_data,
+                   predict_data) {
+  
+    mse <- mean((test_data$value - predict_data$value)^2)
+    
+    return(mse)
+}
+
 
 ###########################################
 # NAIVE
@@ -34,15 +55,12 @@ predict_naive <- data.frame(DATE = test$DATE,
                             value = rep(train[nrow(train),]$value,nrow(test)))
 
 
-ggplot(data=data, aes(DATE,value),colour = 'black') + 
-  geom_line() + 
-  geom_line(data=predict_naive,aes(DATE,value),colour = "red") +
-  scale_x_date(date_breaks = "4 year") +
-  labs(x="date", y = "sales", title = "US Beer Sales - Naive")
+forecast_plot(data=data,
+              forecast_data = predict_naive,
+              name = "Naive")
 
-ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/post_img/time_series_blog_plot2.jpeg",plot2
-       ,height=7,width=7,dpi=300)
-
+# 2598044
+result(test,predict_naive)
 
 ###########################################
 # Simple Average
@@ -53,79 +71,110 @@ ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/post_img/time_se
 sim_avg <- data.frame(DATE = test$DATE, 
                             value = rep(mean(test$value),nrow(test)))
 
+forecast_plot(data=data,
+              forecast_data = sim_avg,
+              name = "Simple Average")
 
 
-ggplot(data, aes(DATE,value)) + 
-  geom_line() + 
-  scale_x_date(date_breaks = "4 year") +
-  geom_line(data=sim_avg,aes(DATE,value),colour = "red") + 
-  labs(x="date", y = "sales", title = "US Beer Sales - Simple Average")
+# 1840232
+result(test,sim_avg)
 
-ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/post_img/time_series_blog/plot3.png",plot3
-       ,height=7,width=7,dpi=300)
-
-###################
+######################################
 # Time Series data
-###################
+######################################
 
 
-ts_data <- ts(data$value,start = c(1992, 1), frequency = 12)
+ts_data <- ts(data$value,start = c(1992, 1,1), frequency = 12)
 
-train_ts <- window(ts_data, start = c(1992,1), end = c(2012,12))
+train_ts <- window(ts_data, start = c(1992), end = c(2012,12))
 
-test_ts <- window(ts_data, start = c(2013,1))
+test_ts <- window(ts_data, start = c(2013))
 
 ###########################################
 # Moving Average
 ############################################
 
 
-mov_avg <- ma(ts_data, order = 12)
+mov_avg <- ma(train_ts, order = 12)
 
-moving_average <- forecast(mov_avg, h = 36)
+moving_average <- forecast(mov_avg, h = length(test_ts))
 
-autoplot(moving_average) + labs(title = "US Beer Sales - Moving Average")
+ma_avg <- data.frame(DATE = test$DATE, 
+                      value = as.vector(moving_average$mean))
 
-ggsave("C:/Users/Jared Chung/Desktop/jaredchung_blog/static/img/post_img/time_series_blog_plot4.jpeg",plot4
-       ,height=7,width=7,dpi=300)
+forecast_plot(data=data,
+              forecast_data = ma_avg,
+              name = "Moving Average")
+
+# 1645909
+result(test,ma_avg)
 
 ###########################################
 # Exponential Smoothing
 ############################################
 
-ses_model <- ses(ts_data, h = 36)
+ses_model <- ses(train_ts, h = length(test_ts))
 
-autoplot(ses_model) + labs(title = "US Beer Sales")
+ses_avg <- data.frame(DATE = test$DATE, 
+                     value = as.vector(ses_model$mean))
+
+forecast_plot(data=data,
+              forecast_data = ses_avg,
+              name = "Simple Exponential Smoothing")
+
+# 2121549
+result(test,ses_avg)
 
 ###########################################
 # Holt winters
 ############################################
 
 
-holt_winter <- hw(ts_data, h = 36)
+holt_winter <- hw(train_ts, h = length(test_ts))
 
-autoplot(holt_winter) + labs(title = "US Beer Sales")
 
-ets_model <- ets(ts_data)
+hw_avg <- data.frame(DATE = test$DATE, 
+                      value = as.vector(holt_winter$mean))
 
-ets_forecast <- forecast(ets_model, h = 36)
+forecast_plot(data=data,
+              forecast_data = hw_avg,
+              name = "Holt Winters")
 
-autoplot(ets_forecast) + labs(title = "US Beer Sales")
+# 370809.9
+result(test,hw_avg)
+
+ets_model <- ets(train_ts)
+
+ets_forecast <- forecast(ets_model, h = length(test_ts))
+
+ets_avg <- data.frame(DATE = test$DATE, 
+                      value = as.vector(ets_forecast$mean))
+
+forecast_plot(data=data,
+              forecast_data = ets_avg,
+              name = "ets (automated)")
+ 
+# 402562.1
+result(test,ets_avg)
 
 ###########################################
 # Arima
 ############################################
 
 
-arima_model <- auto.arima(ts_data)
+arima_model <- auto.arima(train_ts)
 
-arima_forecast <- forecast(arima_model, h = 36)
+arima_forecast <- forecast(arima_model, h = length(test_ts))
 
-autoplot(arima_forecast) + labs(title = "US Beer Sales")
+arima_avg <- data.frame(DATE = test$DATE, 
+                      value = as.vector(arima_forecast$mean))
 
+forecast_plot(data=data,
+              forecast_data = arima_avg,
+              name = "Arima")
 
-
-
+# 248802
+result(test,arima_avg)
 
 
 
