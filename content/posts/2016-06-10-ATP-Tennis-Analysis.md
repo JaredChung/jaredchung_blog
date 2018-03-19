@@ -13,9 +13,11 @@ The main package we’ll be using for this analysis is **tidyverse** by Hadley W
 
 The data set contains 46652 matches and 54 columns which is a decent amount of information to work with. Although there is quite a lot of features in the data set, I won’t be using all of them. The table below gives a small peak at what the data looks like. It has some useful information like the Winner, Loser, Tournament and even what Surface they played on.
 
-![img](http://15-3692.ca.uts.edu.au/wp-content/uploads/sites/111/2017/04/Table1-1.png)
+![]({{url_for('static', filename = 'img/postimg/tennisblog/tennis_Table1-1.png)}})
 
 There are some missing values so it’s a good idea to check which columns have missing values and how many are there. There are missing values in the columns W1 – L5 which is understandable as not every match ends up in 5 sets. The remaining columns are related to betting odds and so not every match contained
+
+![]({{url_for('static', filename = 'img/postimg/tennisblog/tennis_Table_missing_values.png)}})
 
 ![img](http://15-3692.ca.uts.edu.au/wp-content/uploads/sites/111/2017/04/Table_missing_values.png)
 
@@ -42,8 +44,6 @@ In the end we produce a plot which shows each player and how they compare over t
 ## Summary
 
 In summary, I used the R package ggplot to produce some visualizations which highlighted some interesting insights about tennis players. I have only scratched the surface with some simple graphical analysis. I think there is a lot of space for modeling as well, that is, creating a model that can predict the winning records of a player.
-
-I hope you liked this post. Any comments or suggestions, please share in the comments section.
 
 
 

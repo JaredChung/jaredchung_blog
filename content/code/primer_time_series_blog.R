@@ -1,4 +1,5 @@
 
+# R script for the time series blog
 
 
 library(forecast)
