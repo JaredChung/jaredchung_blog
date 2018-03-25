@@ -25,6 +25,10 @@ The first analysis I want to do is look at the top 20 players and compare their 
 
 The first data visualization I want to create in GGPlot is a heat map which shows the win percentage for the top 20 players based on the surface.
 
+
+
+![]({{url_for('static', filename = 'img/postimg/tennisblog/tennis_graph2_heatmap_surface.png)}})
+
 [![img](http://15-3692.ca.uts.edu.au/wp-content/uploads/sites/111/2017/04/graph2_heatmap_surface.png)](http://15-3692.ca.uts.edu.au/wp-content/uploads/sites/111/2017/04/graph2_heatmap_surface.png)
 
 The heat map shows the each players win percentage which is indicated by the intensity of the color. You can see that Nadal has an exceptional win rate on Clay which is no surprise considering he is called the “King of Clay”.
