@@ -1,4 +1,4 @@
-# jaredchung data science blog
+# Data science blog (Jared Chung)
 
 This blog outlines various data science topics and projects. The majority of the code used in the blogs is stored within this repository.
 
