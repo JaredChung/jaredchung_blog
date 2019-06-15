@@ -2,7 +2,6 @@
 <html lang="en">
 
   <head>
-    {% block head %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -20,12 +19,9 @@
 
     <!-- Custom styles for this template -->
     <link href={{ url_for('static', filename = 'css/clean-blog.min.css')}} rel="stylesheet">
-{% endblock %}
-
   </head>
 
 <body>
-
 {% block navbar %}
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -129,6 +125,6 @@
     <!-- Custom scripts for this template -->
     <script src={{ url_for('static',filename = 'js/clean-blog.min.js')}}></script>
 
-  </body>
+</body>
 
 </html>

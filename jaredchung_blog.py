@@ -1,3 +1,8 @@
+# Data Science Blog
+# Author - Jared Chung
+
+
+# Standard Packages
 import os
 from flask import Flask, render_template, request, flash, render_template_string, Markup
 from flask_flatpages import FlatPages, pygmented_markdown
@@ -12,16 +17,19 @@ FLATPAGES_EXTENSION = '.md'
 FLATPAGES_ROOT = 'content'
 POST_DIR = 'posts'
 
+# Create App
 app = Flask(__name__)
 flatpages = FlatPages(app)
 
-#used to render jinja templates in the markdown files so images can be displayed
+
+# used to render jinja templates in the markdown files so images can be displayed
 def prerender_jinja(text):
     prerendered_body = render_template_string(Markup(text))
     return pygmented_markdown(prerendered_body)
 
-app.config['FLATPAGES_HTML_RENDERER'] = prerender_jinja
 
+# Configure the application for images
+app.config['FLATPAGES_HTML_RENDERER'] = prerender_jinja
 app.config.from_object(__name__)
 app.secret_key = 'personal key'
 
@@ -38,6 +46,7 @@ app.config['SECURITY_EMAIL_SENDER'] = 'jared_chung@hotmail.com'
 
 mail = Mail(app)
 
+
 # Create contact form
 class ContactForm(FlaskForm):
     name = StringField("Name", [validators.DataRequired("Please enter your name.")])
@@ -45,6 +54,7 @@ class ContactForm(FlaskForm):
     subject = StringField("Subject", [validators.DataRequired("Please enter a subject.")])
     message = TextAreaField("Message", [validators.DataRequired("Please enter a message.")])
     submit = SubmitField("Send")
+
 
 @app.route('/contact', methods = ['GET','POST'])
 def contact():
