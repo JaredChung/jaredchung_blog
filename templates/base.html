@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Jared Chung">
 
-   <title>{% block title %} {% endblock %}</title>
+    <title>{% block title %} {% endblock %}</title>
 
     <!-- Bootstrap core CSS -->
     <link href={{ url_for('static', filename = 'css/bootstrap.min.css')}} rel="stylesheet">
@@ -19,10 +18,8 @@
 
     <!-- Custom styles for this template -->
     <link href={{ url_for('static', filename = 'css/clean-blog.min.css')}} rel="stylesheet">
-  </head>
-
+</head>
 <body>
-
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
   <div class="container">
@@ -50,7 +47,6 @@
   </div>
 </nav>
 
-
 <!-- Page Header -->
 <header class="masthead" style="background-image: url('{{ url_for('static', filename ='img/home-bg.jpg')}}')">
   <div class="overlay"></div>
@@ -65,9 +61,7 @@
   </div>
 </header>
 
-    <!-- Main Content -->
-
-
+<!-- Main Content -->
 <div class="container">
   <div class="row">
     <div class="col-lg-8 col-md-10 mx-auto">
@@ -76,51 +70,49 @@
   </div>
 </div>
 
-
-
 <!-- Footer -->
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-              <ul class="list-inline text-center">
-              <li class="list-inline-item">
-                <a href="https://www.linkedin.com/in/jared-chung-7428186a/">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://www.facebook.com/jared.chung.58">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://github.com/jaredchung">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-            </ul>
-            <p class="copyright text-muted">Copyright &copy; Jared Chung Data Science Blog 2016</p>
-          </div>
-        </div>
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/jared-chung-7428186a/">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/jared.chung.58">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a href="https://github.com/jaredchung">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; Jared Chung Data Science Blog 2016</p>
       </div>
-    </footer>
+    </div>
+  </div>
+</footer>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src={{ url_for('static',filename = 'js/jquery.min.js')}}></script>
-    <script src={{ url_for('static',filename = 'js/bootstrap.bundle.min.js')}}></script>
+<!-- Bootstrap core JavaScript -->
+<script src={{ url_for('static',filename = 'js/jquery.min.js')}}></script>
+<script src={{ url_for('static',filename = 'js/bootstrap.bundle.min.js')}}></script>
 
-    <!-- Custom scripts for this template -->
-    <script src={{ url_for('static',filename = 'js/clean-blog.min.js')}}></script>
+<!-- Custom scripts for this template -->
+<script src={{ url_for('static',filename = 'js/clean-blog.min.js')}}></script>
 
 </body>
 
