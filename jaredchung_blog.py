@@ -60,6 +60,7 @@ class ContactForm(FlaskForm):
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
 
+    # Create form
     form = ContactForm()
 
     if request.method == 'POST':
@@ -68,10 +69,8 @@ def contact():
             return render_template('contact.html', form=form)
         else:
             msg = Message(form.subject.data, sender='jared_chung@hotmail.com', recipients=['jared_chung@hotmail.com'])
-            msg.body = """
-            From: %s <%s>
-            %s
-            """ % (form.name.data, form.email.data, form.message.data)
+            msg.body = """ From: %s <%s>
+                            %s """ % (form.name.data, form.email.data, form.message.data)
             mail.send(msg)
             return render_template('contact.html', success=True)
     elif request.method == 'GET':
@@ -86,16 +85,16 @@ def about():
 @app.route("/posts")
 def posts():
 
-    posts = [p for p in flatpages if p.path.startswith(POST_DIR)]
-    posts.sort(key = lambda item:item['date'], reverse=True)
-    return render_template('posts.html', posts = posts)
+    md_posts = [p for p in flatpages if p.path.startswith(POST_DIR)]
+    md_posts.sort(key=lambda item: item['date'], reverse=True)
+    return render_template('posts.html', posts=md_posts)
 
 
 @app.route('/posts/<name>/')
 def post(name):
     path = '{}/{}'.format(POST_DIR, name)
-    post = flatpages.get_or_404(path)
-    return render_template('post.html', post=post)
+    md_post = flatpages.get_or_404(path)
+    return render_template('post.html', post=md_post)
 
 
 @app.errorhandler(404)
