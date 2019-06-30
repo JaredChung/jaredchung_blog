@@ -5,7 +5,7 @@ certifi==2019.6.16
 chardet==3.0.4
 Click==7.0
 dominate==2.3.5
-Flask==0.11.1
+Flask==0.12.1
 Flask-Babel==0.11.2
 Flask-Bootstrap==3.3.7.1
 Flask-Cors==2.1.2
