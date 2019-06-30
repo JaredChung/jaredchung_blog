@@ -4,6 +4,7 @@
 
 # Standard Packages
 import os
+import logging
 from flask import Flask, render_template, request, flash, render_template_string, Markup
 from flask_flatpages import FlatPages, pygmented_markdown
 from flask_wtf import FlaskForm
@@ -32,6 +33,8 @@ def prerender_jinja(text):
 app.config['FLATPAGES_HTML_RENDERER'] = prerender_jinja
 app.config.from_object(__name__)
 app.secret_key = 'personal key'
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 
 # Mail variables
 app.config["MAIL_SERVER"] = 'smtp.live.com'
